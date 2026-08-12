@@ -6,7 +6,7 @@ async function boot() {
   try {
     const app = new App(canvas);
     await app.init();
-    window.app = app; // debug access
+    window.app = app;
     console.log('[Elemental Sandbox Game] ready');
   } catch (err) {
     console.error('[boot] failed', err);
