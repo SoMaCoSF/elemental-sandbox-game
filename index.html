@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elemental Sandbox Game</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0f; }
+    #viewport { display: block; width: 100%; height: 100%; touch-action: none; }
+    #ui { position: absolute; inset: 0; pointer-events: none; font-family: system-ui, sans-serif; color: #e8f0ff; }
+    #hud { position: absolute; top: 16px; left: 16px; display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 4px #000; }
+    #hud .label { font-size: 12px; opacity: 0.7; letter-spacing: 0.05em; text-transform: uppercase; }
+    #hud .value { font-size: 22px; font-weight: 600; }
+    #abilities { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
+    .ability-slot { width: 56px; height: 56px; border-radius: 10px; background: rgba(20,24,40,0.85); border: 2px solid rgba(120,160,255,0.35); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; position: relative; }
+    .ability-slot.active { border-color: #7ec8ff; box-shadow: 0 0 12px rgba(100,180,255,0.5); }
+    .ability-slot .cd { position: absolute; inset: 0; background: rgba(0,0,0,0.55); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; }
+    #message { position: absolute; top: 40%; left: 50%; transform: translate(-50%,-50%); font-size: 28px; font-weight: 700; text-align: center; text-shadow: 0 2px 12px #000; opacity: 0; transition: opacity 0.3s; }
+    #message.show { opacity: 1; }
+    #controls-hint { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); font-size: 13px; opacity: 0.55; text-align: center; }
+  </style>
+</head>
+<body>
+  <canvas id="viewport"></canvas>
+  <div id="ui">
+    <div id="hud">
+      <div><div class="label">Score</div><div class="value" id="score">0</div></div>
+      <div><div class="label">Wave</div><div class="value" id="wave">1</div></div>
+      <div><div class="label">Health</div><div class="value" id="health">100</div></div>
+      <div><div class="label">Kills</div><div class="value" id="kills">0</div></div>
+    </div>
+    <div id="abilities">
+      <div class="ability-slot active" data-key="Q">Q</div>
+      <div class="ability-slot" data-key="E">E</div>
+      <div class="ability-slot" data-key="R">R</div>
+      <div class="ability-slot" data-key="F">F</div>
+      <div class="ability-slot" data-key="V">V</div>
+    </div>
+    <div id="message"></div>
+    <div id="controls-hint">WASD move · Mouse aim · Q/E/R/F/V select · Left click fire · Space dash</div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
